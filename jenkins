@@ -1,23 +1,30 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage('checkout'){
-            steps{
-                echo 'source code checkout completed'
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/khayyumShaik726/student_profile.git'
+
+                echo 'Source code checkout completed'
             }
         }
-        stage('build'){
-            steps{
+
+        stage('Build') {
+            steps {
                 bat 'mvn clean compile'
             }
         }
-        stage('test'){
-            steps{
+
+        stage('Test') {
+            steps {
                 bat 'mvn test'
             }
         }
-        stage('package'){
-            steps{
+
+        stage('Package') {
+            steps {
                 bat 'mvn package'
             }
         }
